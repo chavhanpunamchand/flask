@@ -1,0 +1,141 @@
+'''
+webservice for classes
+Entities
+    student --> id name age email address*
+    address --> id city state pincode street
+    class   --> id name address*
+    courses --> id name code fees
+                1  Py    PY  2
+    batches --> id batchnum startdate enddate  FEES
+                B1           10th       30th    20
+                B2            3RD        6TH    20
+                B3                              25
+'''
+
+
+'''
+payment services for --> all other applications--> one of --> classpro
+bankservice
+    bank
+    account -->
+    customer
+    address
+
+
+
+
+  --> get batch  details -->  stud/name-contacts emails --> teachers --> stat --> all data
+
+
+
+  	1						2						3						4
+Desktop    				Webapp					WebServices				Microservices
+
+
+1 --> standalone application --> platform specific --> designed for one to one machine
+		excel -->
+		calcuter
+		word
+		paint
+		photoshop
+
+
+2 --> processing at single --> interfaces --> clients many -->  MVC application
+		ticket -->
+				movie
+				train
+				hotel
+				web application
+				banking -> webapp
+
+		3 tier arch -->
+							Interface			Processing			Database
+							UI					Model
+							View				Python
+									 Flask--> Controller -->
+
+					M --> MOdel  -- Python code
+					V --> View	 --> Jinja Template/HTML/CSS 		MVT ==> derived from
+					C --> Controller --> Flask--
+
+webservice --> webservice is also a webapp -->
+						webapp which is designed- - to provide --services - to another
+						applications -->
+						ticket -->
+								payment --> banking services
+								hotel --> hotel services
+								sms  service
+								flipkart -->
+
+			two/more diff application --> proper communication -->
+						serialization/deserialization of data is required
+
+					app1				app2
+					irctc				sbi
+					python				java
+						dy				st
+						obj--> json/xml/yaml --> app2
+
+				app1 --> request	 --> app2 --
+	user						serialize deserize (process)->response
+				app1			deserialize		serialize
+
+
+
+REQUEST
+			|HTTP METHOD TYPE		|		URI		| 	HTTP VERSION|
+			|						REQUEST HEADERS					|
+			|						REQUEST BODY					|
+
+	--> Method Type --> GET/POST -[MVC] --> WEBSERVICE [GET/POST/PUT/DELETE/HEAD/OPTION]]
+	--> URI		---> BASE ROUTE => http://localhost:5000		/student
+	--> HTTP VERSION - 1.1
+	--> HEADERS --> Authorization Token		--> REQUEST META DATA --> ADDITIONAL
+						DATE
+
+
+
+	HTTP METHOD TYPE
+			BROWSER --> ONLY GET | POST
+
+	APPLICATION
+		POSTMAN -- TOOL -->
+			GET			--> TO RETRIVE INFORMATION FROM SERVER
+			POST		--> TO CREATE/ADD/INSERT CONTENT ON SERVER
+			PUT			--> MODIFY/UPDATE DATA
+			DELETE		--> REMOVE/DELETE
+
+			HEAD
+			OPTION
+
+RESPONSE
+			HTTP Status code		HTTP Version
+					Response Headers
+					Respose Body
+
+	1xx			100	-- 199			--> informational message
+	2xx								--> success code
+	3xx								--> redirectional
+	4xx								--> client side errors
+	5xx								--> server side errors
+
+
+class pro application
+					student services -->
+
+get 		http://localhost:5000/students/			--> list of registered students
+get 		http://localhost:5000/students/{id}		--> specified id student
+post 		http://localhost:5000/students/			Body -- {"stud_email" : "value",
+															"stud_mobile" : int,
+															"stud_email" : "unique value"
+																	}
+delete
+
+update
+
+get_batch_details -->
+
+
+
+
+'''

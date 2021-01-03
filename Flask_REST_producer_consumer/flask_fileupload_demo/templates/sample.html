@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>File Upload Demo</title>
+</head>
+<body>
+
+    <form action="/index/" method="post" enctype="multipart/form-data">
+        Name : <input type="text" name="fname">
+        Image : <input type="file" name="dp">
+        <input type="submit">
+    </form>
+
+
+ <img src="{{ url_for('static', filename = 'yogesh_consumer.png') }}" width="200" height="85">
+
+</body>
+</html>

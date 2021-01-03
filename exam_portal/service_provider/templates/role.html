@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Role</title>
+</head>
+<body>
+        <h2>Role Admin Portal</h2><br><br>
+        <a href="/exam/portal/logout/">LOGOUT</a>
+        {{msg}}<br><br>
+        <form action="/service/mvc/role/" method="post">
+            Role Id : <input type="text" name="roleid" value="{{role.id}}"> <br><br>
+            Role Name :  <input type="text" name="rolename" value="{{role.role}}"><br><br>
+            <input type="submit">
+        </form>
+    {% if roles %}
+
+         <table border="1">
+                <thead>
+                        <th>Role Id</th>
+                        <th>Role Name</th>
+                        <th>Action</th>
+                </thead>
+                <tbody>
+                        {% for role in roles %}
+                            <tr>
+                                <td>{{role.id}}</td>
+                                 <td>{{role.role}}</td>
+                                <td>
+                                  <a href="/mvc/role/edit/{{role.id}}">EDIT</a>
+                                     <a href="/mvc/role/delete/{{role.id}}">DELETE</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+
+                </tbody>
+
+        </table>
+        {% else %}
+            <h3>No Records</h3>
+        {% endif %}
+
+</body>
+</html>

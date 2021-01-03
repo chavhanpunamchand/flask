@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{mapping}}</title>
+</head>
+<body>
+    <center><h1>{{mapping}}</h1></center><br><br>
+    {{resp}}
+    <br><br>
+    <form action="/address/save/" method="post">
+        Id : <input type="text" name="adrid" value="{{adr.id}}" readonly> <br><br>
+        City :<input type="text" name="adrcity" value="{{adr.city}}"> <br><br>
+        State :<input type="text" name="adrstate" value="{{adr.state}}"> <br><br>
+        Pincode :<input type="text" name="adrpin" value="{{adr.pincode}}"> <br><br>
+        <input type="submit" > <br><br>
+    </form>
+
+    {% if adrlist %}
+        <table border="1">
+            <thead>
+                <th>Id </th> <th>City</th> <th>State</th> <th>Pincode</th> <th>Action</th>
+            </thead>
+            <tbody>
+                    {% for adr in adrlist %}
+                        <tr>
+                            <td>{{adr.id}}</td>
+                            <td>{{adr.city}}</td>
+                            <td>{{adr.state}}</td>
+                            <td>{{adr.pincode}}</td>
+                            <td>
+                                <a href="/address/edit/{{adr.id}}">EDIT</a>
+                                <a href="/address/delete/{{adr.id}}">DELETE</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+            </tbody>
+
+    </table>
+
+    {% else %}
+        <h3>No Address Present in DB</h3>
+    {% endif %}
+
+</body>
+</html>

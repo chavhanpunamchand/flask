@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ROOMS</title>
+</head>
+<body>
+    <center><h2>Room Details</h2></center>
+    <br><br>
+   {{resp}}
+    <br><br>
+
+            <form action="/rooms/" method="post">
+                Room Id :  <input type="text" name="id" value=""><br><br>
+                Types : <select name="type">
+                            <option value="0">--select--</option>
+                               {% for type in types %}
+                            <option value="{{type}}">{{type}}</option>
+                {% endfor %}
+                </select><br><br>
+                Charge :<input type="text" name="charge" value=" "><br><br>
+
+                Status: <input type="radio" id="Available" name="status" value="A">
+                        <label for="Available">Available</label>&nbsp;
+                        <input type="radio" id="NotAvailable" name="status" value="NA">&nbsp;
+                        <label for="NotAvailable">Not Available</label><br>
+                Hotel ID:  <input type="text" name="hotel_id" value=""><br><br>
+
+            <br><br>
+                <input type="submit">
+
+            </form>
+<!--    Room(id=1,type='STD',charge=1922.45,status='A',hotelid=)-->
+
+    <table border="1">
+            <thead>
+                    <th>RoomID</th> <th>Types</th> <th>Charge</th> <th>Status</th>
+            </thead>
+            <tbody>
+                    {% for room in roomlist %}
+                        <tr>
+                            {% if room.id %}
+                                 <td>{{room.id}} </td>
+                                 <td>{{room.type}}</td>
+                                 <td>{{room.charge}}</td>
+                                 <td>{{room.status}}</td>
+
+                            {% else %}
+                                 <td>NA</td>
+                                 <td>NA</td>
+                                 <td>NA</td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                                </tbody>
+    </table>
+
+</body>
+</html>

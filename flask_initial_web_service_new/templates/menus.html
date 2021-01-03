@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Menus Page</title>
+</head>
+<body>
+   <center><h1>Menu Page...!</h1></center> <a href="/home/">HOME</a>
+    <br>{{resp}}<br><br>
+
+    <form action="/menus/" method="post">
+        Menu Id : <input type="text" name="mid" value="{{menu.id}}"> <br><br>
+        Name :<input type="text" name="mname" value="{{menu.name}}"> <br><br>
+        price : <input type="text" name="mprice" value="{{menu.price}}"> <br><br>
+        Hotel Id  :<select name="mhotelid">
+        <option value="0">--select--</option>
+        {% for hotel in hotels %}
+        <option value="{{hotel.id}}">{{hotel.id}} {{menu.id}}</option>
+        {% endfor %}
+         </select><br><br>
+        <input type="submit">
+    </form>
+
+    <br>
+
+    <table border="1">
+            <thead>
+                <th>Menu Id</th> <th>Menu Name</th> <th>Menu Price</th><th>Hotel Id</th> <th>Action</th>
+            </thead>
+            <tbody>
+                {% for menu in menulist %}
+                    <tr>
+                        <td>{{menu.id}}</td>
+                        <td>{{menu.name}}</td>
+                        <td>{{menu.price}}</td>
+                        <td>{{menu.hotelid}}</td>
+                        <td>
+                            <a href="/menus/edit/{{menu.id}}">EDIT</a>
+                            <a href="/menus/delete/{{menu.id}}">DELETE</a>
+                        </td>
+
+                    </tr>
+                {% endfor %}
+            </tbody>
+
+
+    </table>
+
+</body>
+</html>

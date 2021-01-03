@@ -1,0 +1,83 @@
+ {{bkob}}<br>
+
+    {% if bkob.bookName == 'Python' %}  == Matched {% endif %}  <br>
+    {% if bkob.bookname is equalto 'Python'%} EqualTo Matched {% endif %}<br>
+    {{ bkob |selectattr("bookName", "equalto", "Python") }}<br>
+    <hr><hr>
+    <br><br>
+
+    {{user == None}}        {# this is compasion statement--> not a filter #}
+
+    <br><br>
+    {% if user %}
+            inside if -- Present
+    {% else %}
+            inside if --> None
+    {% endif %}
+    <br><br>
+
+    <hr><hr>
+    Welcome {{user}},
+
+
+    <br><br>
+    This is server side processed ans : <br><br>
+    {{n1}} + {{n2}}  = {{ans}}
+
+    <br><br>
+    This is Jinja processed ans : <br><br>
+     {{n1}} + {{n2}}  = {{n1 + n2}}
+    <br><br>
+
+    {% if user %}
+        {{user}} : length is {{user | length}}
+    {% endif %}
+
+
+
+
+none (Test).- The none test is used to check if a variable is none, if a variable is None this tests return true.
+	-->  if not ob1:				if ob1 == None:
+				pass					pass
+
+
+length or count.- The length filter is used to obtain the length of a value. For example, if a variable contains latte the filter statement {{variable|length}} outputs 5. For a list variable that contains ['a','e','i'] the filter statement {{variable|length}} outputs 3.
+			len(val)		val.__length__()
+
+			{{val|length}}			length(val)	--> return length karel
+
+equalto (Test).- The equalto test checks if an object has the same value as another object. For example {% if coffee.price is equalto 1.99 %} coffee prices equals 1.99 {% endif %}. This works just like the ==, but is more helpful when used with other filters such as selectattr (e.g. {{ users|selectattr("email", "equalto", "webmaster@coffeehouse.com") }}, gets users with email webmaster@coffeehouse.com).
+			content equality -->
+				ob1 == ob2
+
+				{{ob1 == ob2}}
+				{ob1.name equalsto val}
+
+				{object| selectattr(name equalto val)}	--
+
+
+string (Test).- The string test checks if a variable is a string (e.g. {% if variable is string %}Yes, the variable is a string!{% endif %}).
+				type(val)==str
+
+number (Test).- The number test returns true if a variable is a number.
+				type(val) == int  or type(val) == complex  or type(val) == float
+
+iterable (Test).- The iterable test checks if it's possible to iterate over an object.
+					type(val) == [complextypes/string/generator/iterator]--
+
+					anything which is iterable
+sequence (Test).- The sequence test checks if the object is a sequence (e.g. a generator).
+			only for generator la true asel
+
+mapping (Test).- The mapping test checks if the object is a mapping (e.g. a dictionary).
+				only for dict -->
+callable (Test).- The callable test verifies if an object is callable. In Python a function, classes and object instances with a __call__ method are callables.
+				to which we can call --. function/method/class -->
+
+sameas (Test).- The sameas test verifies if an object points to the same memory address than another object.
+		 ob1 is ob2
+		 id(ob1) == id(ob2)
+
+
+		 ref equality -->
+

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+</head>
+<body>
+
+    <h1>PRODUCT INFO</h1>
+
+    <br>
+    {{resp}}
+
+    <form action="/product/" method="post" enctype="multipart/form-data">
+        Item ID : <input type="text" name="itid" value="{{item.itemId}}"> <br><br>
+        Item Name : <input type="text" name="itnm" value="{{item.itemName}}"> <br><br>
+        Item Qty : <input type="text" name="itqt" value="{{item.itemQty}}"> <br><br>
+        Item Price : <input type="text" name="itpr" value="{{item.itemPrice}}"> <br><br>
+        Item Photo : <input type="file" name="itph"> <br><br>
+        <input type="submit">
+    </form>
+
+    <table border="1">
+        <thead>
+            <th>Item ID </th>   <th>Item Name </th>   <th>Item Price </th>
+            <th>Item Qty </th>   <th>Item Photo </th>   <th>ACTION</th>
+        </thead>
+
+        <tbody>
+                {% for item in itemlist %}
+                    <tr>
+                        <td>{{item.itemId}}</td>
+                        <td>{{item.itemName}}</td>
+                        <td>{{item.itemPrice}}</td>
+                        <td>{{item.itemQty}}</td>
+                        <td>
+                            <img src="{{ url_for('static', filename = 'yogesh_consumer.png') }}"
+                                 width="100" height="85">
+</td>
+                        <td>
+                            <a href="/product/edit/{{item.itemId}}">EDIT</a>
+                             <a href="/product/delete/{{item.itemId}}">DELETE</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+        </tbody>
+
+    </table>
+
+</body>
+</html>

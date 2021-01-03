@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+</head>
+<body>
+<center><h3>Employees Details </h3></center>
+<form action="registerForm" method="post">
+Emp ID: <input type="text" name="empid" id="eid"><br><br>
+Emp Name: <input type="text" name="empName" id="ename"><br><br>
+Emp Age: <input type="text" name="empAge" id="eage"><br><br>
+Emp Gender: <input type="radio" id="male" name="eGender" value="male">
+<label for="male">Male</label>
+<input type="radio" id="female" name="eGender" value="female">
+<label for="female">Female</label>
+<input type="radio" id="other" name="eGender" value="other">
+<label for="other">Other</label><br><br>
+
+Emp City: <input type="text" name="empCity" id="ecity"><br><br>
+Emp Salary: <input type="text" name="empSalary" id="esalary"><br><br>
+Emp Email: <input type="email" name="empEmail" id="email"><br><br>
+
+
+<label for="empRole">Emp Roll:</label>
+<select name="empRole" >
+  <option value="Mang-1">Manager--1</option>
+  <option value="Mang-2">Manager--2</option>
+  <option value="Mang-3">Manager--3</option>
+  <option value="Mang-4">Manager--4</option>
+  <option value="Mang-5">Manager--5</option>
+  <option value="Mang-6">Manager--6</option>
+</select>
+<br><br>
+    <label for="empRole">Emp Skills:</label>
+<select name="empSkill" multiple>
+  <option value="skill-1">Skill--1</option>
+  <option value="skill-2">Skill--2</option>
+  <option value="skill-3">Skill--3</option>
+  <option value="skill-4">Skill--4</option>
+  <option value="skill-5">Skill--5</option>
+  <option value="skill-6">Skill--6</option>
+</select><br><br>
+
+
+Emp Hobbies:  <input type="checkbox" name="emphobs" value="CR1">
+  <label for="skill1">Cricket--1 </label>
+  <input type="checkbox" name="emphobs" value="CR2">
+  <label for="skill2">Cricket--2 </label>
+    <input type="checkbox" name="emphobs" value="CR3">
+  <label for="skill3">Cricket--3 </label>
+    <input type="checkbox" name="emphobs" value="CR4">
+  <label for="skill4">Cricket--4 </label>
+    <input type="checkbox" name="emphobs" value="CR5">
+  <label for="skill5">Cricket--5 </label>
+
+<br><br>
+ <input type="submit" value="Sign Up">
+
+</form>
+</body>
+</html>

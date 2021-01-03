@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hotels Page</title>
+</head>
+<body>
+   <center><h1>Hotel Page...!</h1></center> <a href="/home/">HOME</a>
+    <br>{{resp}}<br><br>
+
+    <form action="/hotel/" method="POST">
+        Hotel Id : <input type="text" name="hid" value="{{hotel.id}}"> <br><br>
+        Hotel Name :<input type="text" name="hname" value="{{hotel.name}}"> <br><br>
+        Hotel Address : <input type="text" name="haddress" value="{{hotel.address}}"> <br><br>
+        contact No : <input type="text" name="hcontact" value="{{hotel.contact}}"> <br><br>
+        website: <input type="text" name="hwebsite" value="{{hotel.website}}"> <br><br>
+        Account ID: <input type="text" name="haccid" value="{{hotel.accno}}"> <br><br>
+<!--        Room ID:<select name="hroomid">
+        <option value="0">--select--</option>
+        {% for room in rooms %}
+        <option value="{{room.id}}">{{room.id}}</option>
+        {% endfor %}
+         </select><br><br>
+        Menus :<select name="hmenus">
+        <option value="0">--select--</option>
+        {% for menu in menus %}
+        <option value="{{menu.id}}">{{menu.id}}</option>
+        {% endfor %}
+         </select><br><br>
+        Accounts:<select name="haccount">
+        <option value="0">--select--</option>
+        {% for account in accounts %}
+        <option value="{{account.id}}">{{account.id}}</option>
+        {% endfor %}
+         </select><br><br>-->
+        <input type="submit">
+    </form>
+
+    <br>
+
+    <table border="1">
+            <thead>
+                <th>Hotel Id</th> <th>Hotel Name</th> <th>Address</th><th>contact_No</th><th>Hotel Website</th> <th>Hotel Account_Id</th><th>Action</th>
+            </thead>
+            <tbody>
+                {% for hotel in hotellist %}
+                    <tr>
+                        <td>{{hotel.id}}</td>
+                        <td>{{hotel.name}}</td>
+                        <td>{{hotel.address}}</td>
+                        <td>{{hotel.contact}}</td>
+                        <td>{{hotel.website}}</td>
+                        <td>{{hotel.accno}}</td>
+                        <td>
+                            <a href="/hotel/edit/{{hotel.id}}">EDIT</a>
+                            <a href="/hotel/delete/{{hotel.id}}">DELETE</a>
+                        </td>
+
+                    </tr>
+                {% endfor %}
+            </tbody>
+
+
+    </table>
+
+</body>
+</html>

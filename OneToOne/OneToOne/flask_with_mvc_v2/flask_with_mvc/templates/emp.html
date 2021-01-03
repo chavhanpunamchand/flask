@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{mapping}}</title>
+</head>
+<body>
+    <center><h1>{{mapping}}</h1></center><br><br>
+
+    {{resp}}
+    <br><br>
+    <form action="/emp/save/" method="post">
+        Id : <input type="text" name="empid" value="{{emp.id}}" readonly> <br><br>
+        Name :<input type="text" name="empname" value="{{emp.name}}"> <br><br>
+        Role :<input type="text" name="emprole" value="{{emp.role}}"> <br><br>
+        Salary :<input type="text" name="empsal" value="{{emp.salary}}"> <br><br>
+        Select Address *: <select name="address">
+                            <option value="0">--select--</option>
+                           {% for adr in adrlist %}
+                                <option value="{{adr.id}}">{{adr.city}} - {{adr.id}}</option>
+                            {% endfor %}
+    </select><br><br>
+        <input type="submit" > <br><br>
+    </form>
+
+
+    {% if emplist %}
+
+    <table border="1">
+            <thead>
+                <th>Id </th> <th>Name</th> <th>Role</th> <th>Salary</th> <th>Action</th>
+            </thead>
+            <tbody>
+                    {% for emp in emplist %}
+                        <tr>
+                            <td>{{emp.id}}</td>
+                            <td>{{emp.name}}</td>
+                            <td>{{emp.role}}</td>
+                            <td>{{emp.salary}}</td>
+                            <td>
+                                <a href="/emp/edit/{{emp.id}}">EDIT</a>
+                                <a href="/emp/delete/{{emp.id}}">DELETE</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+            </tbody>
+
+    </table>
+
+    {% else %}
+        <h3>No Emp Records</h3>
+    {% endif %}
+</body>
+</html>

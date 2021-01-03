@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ONETOONE</title>
+</head>
+<body>
+    <center><h2>One To One MVC/MVT Demo</h2></center>
+    <br><br>
+    {{resp}}
+
+    {% if flag %}
+
+
+            <br><br>
+            <form action="/address/" method="post">
+                Address Id :  <input type="text" name="adid" value="{{address.id}}"><br><br>
+                Address City:<input type="text" name="adcity" value="{{address.city}}"><br><br>
+                Address State :<input type="text" name="adstate" value="{{address.state}}"><br><br>
+                Address Pincode : <input type="text" name="adpin" value="{{address.pincode}}"><br><br>
+                <input type="submit">
+
+            </form>
+
+
+    {% else %}
+
+            <br><br>
+            <form action="/student/" method="post">
+                Student Id :  <input type="text" name="stid" value="{{stud.id}}" readonly><br><br>
+                Student FirstName:<input type="text" name="stfnm" value="{{stud.fname}}"><br><br>
+                Student LastName :<input type="text" name="stlnm" value="{{stud.lname}}"><br><br>
+                Student Fees : <input type="text" name="stfees" value="{{stud.fees}}"><br><br>
+                <input type="submit">
+            </form>
+    {% endif %}
+
+
+
+
+
+</body>
+</html>

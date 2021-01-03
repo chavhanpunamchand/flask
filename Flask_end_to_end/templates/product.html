@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product_Info</title>
+</head>
+<body>
+              <h2>Product Inventory</h2>
+              {{resp}}<br><br>
+<form action="/persist/" method="post">
+  Product Id: <input type="text" name="pid"  value="{{prod.pid}}"><br><br>
+  Product Name: <input type="text" name="pname"  value="{{prod.name}}"><br><br>
+  Product Price: <input type="text" name="pprice"  value="{{prod.price}}"><br><br>
+  Product Qty: <input type="text" name="pqty"  value="{{prod.qty}}"><br><br>
+    Product Cat: <input type="text" name="pcat"  value="{{prod.cat}}"><br><br>
+
+  Product Vendor: <input type="text" name="pvendor"  value="{{prod.vendor}}"><br><br>
+   <input type="submit"   value="Save" name="save"><br><br>
+
+    <table border="1">
+        <thead>
+        <th>ProdId</th><th>ProdName</th><th>ProdPrice</th><th>ProdQty</th><th>ProdCat</th><th>ProdVendor</th><th>Action</th>
+        </thead>
+        <tbody>
+        {% for prod in prodlist %}
+        <tr>
+            <td>{{prod.pid}}</td><td>{{prod.name}}</td><td>{{prod.price}}</td><td>{{prod.qty}}</td><td>{{prod.cat}}</td><td>{{prod.vendor}}</td>
+            <td>
+                <a href="/edit/{{prod.pid}}">EDIT</a>
+                <a href="/delete/{{prod.pid}}">DELETE</a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+</form>
+</body>
+</html>

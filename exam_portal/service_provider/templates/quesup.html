@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>QuestionUpload</title>
+</head>
+<body>
+        {{msg}} <br><br>
+        <form action="/upload/questions/" method="post" enctype="multipart/form-data">
+            Select Client : <select name="user">
+                        <option value="0">---SELECT---</option>
+                        {% for ven in vendors %}
+                                <option value="{{ven.username}}">{{ven.username}}</option>
+                        {% endfor %}
+        </select> <br><br>
+            Upload File : <input type="file" name="quesfile"><br><br>
+            <input type="submit">
+        </form>
+</body>
+</html>

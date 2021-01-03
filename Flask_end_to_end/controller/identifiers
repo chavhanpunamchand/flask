@@ -1,0 +1,31 @@
+Type	Naming Convention	Examples
+
+1) Function/method
+	Use a lowercase word or words. Separate words by underscores to improve readability.
+	e.g:-function, my_function():
+		                pass
+		          student_info():
+		                pass
+2)  Variable
+    Use a lowercase single letter, word, or words. Separate words with underscores to improve readability.
+    e.g:- x, var,
+          my_variable=100
+
+3) Class
+    Start each word with a capital letter. Do not separate words with underscores. This style is called camel case.
+    e.g Model, MyClass
+        class Student():
+            pass
+
+4) Constant
+    Use an uppercase single letter, word, or words. Separate words with underscores to improve readability.
+        CONSTANT, MY_CONSTANT, MY_LONG_CONSTANT
+
+5)file/Module
+	Use a short, lowercase word or words. Separate words with underscores to improve readability.
+	e.g :- module.py, my_module.py
+
+6)Package
+	Use a short, lowercase word or words. Do not separate words with underscores.
+
+6. Meaning full :- less chars <=15

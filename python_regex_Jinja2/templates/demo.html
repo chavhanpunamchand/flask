@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jinja Template Demo</title>
+</head>
+<body>
+  {{books | map(attribute = 'bookName') | join(', ') }}   {# user defined object list#}
+
+  <br><br><br>
+  <br><br><br>
+    {{namelist | map('upper')| join(', ') }}    {# normal list#}
+
+
+
+    #list of names --> map(take one element and process one by one) -> join(upper,)
+    <br><br><br>
+    Actual --> {{user}} <br><br>
+
+    ANS :
+    {{user | reverse }}
+
+
+    {% if value is iterable %}
+            This is Iterable...
+    {% endif %}
+</body>
+</html>

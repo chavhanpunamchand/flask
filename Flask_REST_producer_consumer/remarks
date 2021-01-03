@@ -1,0 +1,13 @@
+POSTMAN --> API TESTING -->
+
+PROGRAMMING --> API CONSUME --> requests
+
+
+CONSUMER -->
+
+    REQUEST FORMAT -->
+
+                http method type        --> GET
+                uri                     --> /api/product/101
+                request body            --> NO body
+                request header          --> No header
