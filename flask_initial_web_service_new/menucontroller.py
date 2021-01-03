@@ -35,7 +35,7 @@ def save_or_update_menus():
                                resp = msg,user=session['userinfo'],
                                menu = Menu.dummy_menu(),
                                menulist = Menu.query.all()
-                               ,hotels=hotel)
+                               ,hotellist=Hotel.query.all())
     return render_template('login.html', resp='')
 
 @app.route('/menus/edit/<int:mid>')
@@ -45,8 +45,7 @@ def edit_menu_info(mid):
         return render_template('menus.html',
                                resp='',user=session['userinfo'],
                                menu=Menu.query.filter_by(id=mid).first(),
-                               menulist=Menu.query.all(),
-                               )
+                               menulist=Menu.query.all())
     return render_template('login.html', resp='')
 
 @app.route('/menus/delete/<int:mid>')

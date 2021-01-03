@@ -14,9 +14,12 @@
         price : <input type="text" name="mprice" value="{{menu.price}}"> <br><br>
         Hotel Id  :<select name="mhotelid">
         <option value="0">--select--</option>
-        {% for hotel in hotels %}
-        <option value="{{hotel.id}}">{{hotel.id}} {{menu.id}}</option>
-        {% endfor %}
+<!--        {% for menu in menulist %}-->
+        {%if menu.hotelid == 1111 %}  <option value="1111" selected>1111</option> {% endif %}
+        {%if menu.hotelid == 1112 %}  <option value="1112" selected>1112</option> {% endif %}
+        {%if menu.hotelid == 1113 %}  <option value="1113" selected>1113</option> {% endif %}
+<!--        <option value="{{menu.hotelid}}">{{menu.hotelid}}</option>-->
+<!--        {% endfor %}-->
          </select><br><br>
         <input type="submit">
     </form>
