@@ -92,3 +92,4 @@ def toggle_menu_type(val):
 
 if __name__ == '__main__':
     app.run(debug=True)
+    # we have to check only git push working for not we have deal with this
