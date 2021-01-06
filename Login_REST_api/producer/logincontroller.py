@@ -13,6 +13,7 @@ SUCCESS = "SUCCESS"
 MANDATORY_FIELDS  = ['user','pwd','name']
 def check_for_mandatory_fields(reqdata):
     fields = reqdata.keys()
+    
     errors = {}
     for field in MANDATORY_FIELDS:
         if field not in fields:
