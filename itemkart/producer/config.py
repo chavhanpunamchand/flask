@@ -5,4 +5,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] ='mysql+pymysql://root:root@localhost/item
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
 db = SQLAlchemy(app)
 
-#app.config['SECRET_KEY'] = '1238sadh1234390823kjhdJKA*(@E$^$'
+app.config['SECRET_KEY'] = '1238sadh1234390823kjhdJKA*(@E$^$'
+
+
