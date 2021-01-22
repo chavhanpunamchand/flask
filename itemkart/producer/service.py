@@ -30,3 +30,7 @@ class ApplicationServices(ABC):     # holds contracts -- what are all things we 
     @abstractmethod
     def fetch_all_entities(self):
         pass
+
+    @abstractmethod
+    def get_entity_as_per_cat(self):
+        pass

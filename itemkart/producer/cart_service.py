@@ -26,6 +26,8 @@ class CartServiceImpl(ApplicationServices):  # actual implementations
         print('No item with given Id cannot remove')
         return False
 
+
+
     def update_entity(self,itemid,item):
         dbitem = self.fetch_entity(itemid)
         if dbitem:
@@ -46,3 +48,6 @@ class CartServiceImpl(ApplicationServices):  # actual implementations
 
     def fetch_all_entities(self):
         return Cart.query.all()
+
+    def get_entity_as_per_cat(self,cat):
+        return Cart.query.filter_by(cat=cat)
