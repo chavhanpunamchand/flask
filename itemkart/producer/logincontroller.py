@@ -3,65 +3,67 @@
 
 '''
 from itemkart.producer.models import *
-from flask import request
+from flask import Flask, request, jsonify, make_response
 from werkzeug.security import generate_password_hash, check_password_hash
+import uuid
+import jwt
+import datetime
+from functools import wraps
 
 
 
-ERROR = "ERROR"
-SUCCESS = "SUCCESS"
+
+def token_required(f):
+   @wraps(f)
+   def decorator(*args, **kwargs):
+
+      token = None
+
+      if 'x-access-tokens' in request.headers:
+         token = request.headers['x-access-tokens']
+
+      if not token:
+         return jsonify({'message': 'a valid token is missing'})
+
+      try:
+         data = jwt.decode(token, app.config['SECRET_KEY'])
+         current_user = UserInfo.query.filter_by(id=data['id']).first()
+      except:
+         return jsonify({'message': 'token is invalid'})
+
+      return f(current_user, *args, **kwargs)
+   return decorator
 
 
-MANDATORY_FIELDS  = ['user','pwd','name']
-def check_for_mandatory_fields(reqdata):
-    fields = reqdata.keys()
-    
-    errors = {}
-    for field in MANDATORY_FIELDS:
-        if field not in fields:
-            errors[field] = f"{field} not present"
+@app.route('/register', methods=['GET', 'POST'])
+def signup_user():
+    data = request.get_json()
 
-    return errors
+    hashed_password = generate_password_hash(data['password'], method='sha256')
+
+    new_user = UserInfo(id=data['id'], fullname=data['fname'],username=data['uname'], password=hashed_password, admin=False)
+    db.session.add(new_user)
+    db.session.commit()
+
+    return jsonify({'message': 'registered successfully'})
 
 
+@app.route('/login', methods=['GET', 'POST'])
+def login_user():
+    auth = request.authorization
 
-@app.route('/user/new/',methods=["POST"])       # http://localhost:5000/user/new/   post        {user pwd name}
-def add_user_credentials():
-    returnval = {"error": "User Fields Not present so cannot  add a user..!"}
-    reqdata = request.get_json()
-    if reqdata:
-        errors = check_for_mandatory_fields(reqdata)
-        if errors:
-            returnval[ERROR] = errors
-        else:
-            username = reqdata.get("user")
-            password = reqdata.get('pwd')
-            fullname = reqdata.get('name')
-            userob = UserInfo(fullname=fullname,username=username,password=generate_password_hash(password))
-            db.session.add(userob)
-            db.session.commit()
-            return {SUCCESS : "User Added Successfully...!"}
-    return returnval
+    if not auth or not auth.username or not auth.password:
+        return make_response('could not verify', 401, {'WWW.Authentication': 'Basic realm: "login required"'})
 
-import random
-@app.route("/user/token/",methods=["PATCH"])     # http://localhost:5000/user/token/   patch        {user pwd }
-def get_user_token():       # either get or create toekn
-    reqdata = request.get_json()
-    if not reqdata:
-        return {ERROR : "Username and Password required.."}
-    username = reqdata.get("user")
-    password = reqdata.get('pwd')
-    userob = UserInfo.query.filter(UserInfo.username == username,UserInfo.active=='Y').first()
-    if userob and check_password_hash(userob.password,password):
-        if userob.token:
-            return {SUCCESS : {username : userob.token}}
+    user = UserInfo.query.filter_by(username=auth.username).first()
 
-        num = random.randint(111111,999999)
-        token = username + password + str(num)
-        userob.token = token
-        db.session.commit()
-        return {SUCCESS : {username : token}}
-    return {ERROR : "Invalid Credentails"}
+    if check_password_hash(user.password, auth.password):
+        token = jwt.encode({'id':user.id, 'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)},app.config['SECRET_KEY'])
+        return jsonify({'token' : token.decode('UTF-8')})
+        # return jsonify({'token': token.decode('UTF-8')})
+
+    return make_response('could not verify', 401, {'WWW.Authentication': 'Basic realm: "login required"'})
+
 
 
 if __name__ == '__main__':
