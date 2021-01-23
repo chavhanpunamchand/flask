@@ -1,18 +1,18 @@
 '''
-    register username and password and create token
-
+Web token authorization
+register username and password and create token
 '''
+from itemkart.producer.config import app
 from itemkart.producer.models import *
-from flask import Flask, request, jsonify, make_response
+from flask import request, jsonify, make_response
 from werkzeug.security import generate_password_hash, check_password_hash
-import uuid
 import jwt
 import datetime
 from functools import wraps
 
 
 
-
+# function for checking token validation
 def token_required(f):
    @wraps(f)
    def decorator(*args, **kwargs):

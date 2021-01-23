@@ -1,6 +1,7 @@
-from flask import request
+'''
+cart service implementation
+'''
 from itemkart.producer.config import db
-import json
 from itemkart.producer.service import ApplicationServices
 from itemkart.producer.models import Cart
 

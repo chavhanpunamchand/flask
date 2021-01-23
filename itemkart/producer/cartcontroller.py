@@ -1,21 +1,23 @@
+'''
+cart controller used for CRUD operation on items and routing
+'''
 from itemkart.producer.models import Cart,UserInfo
 from itemkart.producer.config import app
 from itemkart.producer.cart_service import CartServiceImpl
-from itemkart.producer.logincontroller import *
+from itemkart.producer.logincontroller import token_required
 from flask import request
 
 import json
 
 CART_URI = "/api/cart/"
-
 pservice = CartServiceImpl()
 
-@app.route(CART_URI, methods=['POST'])#http://127.0.0.1:5000/api/cart/token  POST with body
+
+@app.route(CART_URI, methods=['POST']) #http://127.0.0.1:5000/api/cart/  POST with body
 @token_required
 
 def add_item(current_user):
     reqdata = request.get_json()
-    # if UserInfo.query.filter(UserInfo.token==token).first():
     try:
         item = Cart(name = reqdata.get("item_name"),
                     qty = reqdata.get("item_qty"),
@@ -28,14 +30,11 @@ def add_item(current_user):
     except BaseException as b:
             print(b.args)
     return json.dumps({"ERROR": "Problem in item Add.."})
-        # return json.dumps({"ERROR":"invalid creadential"})
 
 
-@app.route(CART_URI+"<int:itemid>",methods=['DELETE']) #http://127.0.0.1:5000/api/product/1
+@app.route(CART_URI+"<int:itemid>",methods=['DELETE']) #http://127.0.0.1:5000/api/cart/1
 @token_required
 def delete_item(current_user,itemid):
-    # token = reqdata.get("token")
-    # if UserInfo.query.filter(UserInfo.token == token).first():
     try:
         flag = pservice.remove_entity(itemid)
         if flag:
@@ -43,16 +42,11 @@ def delete_item(current_user,itemid):
     except BaseException as b:
             print(b.args)
     return json.dumps({"ERROR": "Problem in item delete.."})
-    # return json.dumps({"ERROR": "invalid creadential"})
 
 
-@app.route(CART_URI+"<int:itemid>",methods=['PUT']) #http://127.0.0.1:5000/api/product/1 body
+@app.route(CART_URI+"<int:itemid>",methods=['PUT']) #http://127.0.0.1:5000/api/cart/1  with body
 @token_required
 def update_item(current_user,itemid):
-    reqdata = request.get_json()
-    # token = reqdata.get("token")
-    # if UserInfo.query.filter(UserInfo.token == token).first():
-
     try:
         reqdata = request.get_json()
         item = Cart(name=reqdata.get("item_name"),
@@ -67,7 +61,6 @@ def update_item(current_user,itemid):
             print(b.args)
     return json.dumps({"ERROR": "Problem in item Update.."})
 
-    # return json.dumps({"ERROR": "invalid creadential"})
 
 def serialize_item(item):
    return {
@@ -79,11 +72,9 @@ def serialize_item(item):
      }
 
 
-@app.route(CART_URI+"<int:itemid>",methods=['GET']) #http://localhost:5000/api/product/{} GET
+@app.route(CART_URI+"<int:itemid>",methods=['GET'])   #http://localhost:5000/api/cart/itemid  GET
 @token_required
 def get_item_details(current_user,itemid):
-    # if UserInfo.query.filter(UserInfo.token == token).first():
-
     try:
         item = pservice.fetch_entity(itemid)
         if item:
@@ -91,14 +82,11 @@ def get_item_details(current_user,itemid):
     except BaseException as b:
         print(b.args)
     return json.dumps({"ERROR": "No item With Given Id..!"})
-    # return json.dumps({"ERROR": "invalid creadential"})
 
 
-@app.route(CART_URI,methods=['GET']) #http://localhost:5000/api/product/
+@app.route(CART_URI,methods=['GET'])  #http://localhost:5000/api/cart/ method=get
 @token_required
 def get_all_item_details(current_user):
-    # if UserInfo.query.filter(UserInfo.token == token).first():
-
     try:
         items = pservice.fetch_all_entities()
         item_list = []
@@ -111,12 +99,8 @@ def get_all_item_details(current_user):
     return json.dumps({"ERROR": "No items--Empty Table.."})
 
 
-    # return json.dumps({"ERROR": "invalid creadential"})
-
-@app.route(CART_URI+"/<cat>",methods=['GET'])  #get items as per catogary
+@app.route(CART_URI+"/<cat>",methods=['GET'])  #http://localhost:5000/api/cart/category  method=get
 def get_all_item_as_per_cat(token,cat):
-    # if UserInfo.query.filter(UserInfo.token == token).first():
-
     try:
         items = pservice.get_entity_as_per_cat(cat)
         item_list = []
@@ -127,6 +111,3 @@ def get_all_item_as_per_cat(token,cat):
     except BaseException as b:
         print(b.args)
     return json.dumps({"ERROR": "No items--Empty Table.."})
-
-
-    # return json.dumps({"ERROR": "invalid creadential"})

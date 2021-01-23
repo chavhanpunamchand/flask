@@ -3,11 +3,7 @@ Service abstract part given to the client
 here abract file for us
 Entity is nothing but the items
 '''
-
-
-
 from abc import abstractmethod,ABC
-
 
 
 class ApplicationServices(ABC):     # holds contracts -- what are all things we are going to offer

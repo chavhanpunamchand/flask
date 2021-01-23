@@ -1,3 +1,7 @@
+'''
+configuration of all flask app developement required
+'''
+
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
