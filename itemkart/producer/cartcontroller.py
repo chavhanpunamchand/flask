@@ -100,6 +100,7 @@ def get_all_item_details(current_user):
 
 
 @app.route(CART_URI+"/<cat>",methods=['GET'])  #http://localhost:5000/api/cart/category  method=get
+@token_required
 def get_all_item_as_per_cat(token,cat):
     try:
         items = pservice.get_entity_as_per_cat(cat)

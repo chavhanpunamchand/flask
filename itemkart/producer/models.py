@@ -9,7 +9,7 @@ class UserInfo(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     fullname = db.Column('fullname', db.String(40))
     username = db.Column('username', db.String(40))
-    password = db.Column('password', db.String(50))
+    password = db.Column('password', db.String(200))
     admin = db.Column('admin',db.Boolean)
 
 
