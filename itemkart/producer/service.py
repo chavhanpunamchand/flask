@@ -1,32 +1,28 @@
-'''
-Service abstract part given to the client
-here abract file for us
-Entity is nothing but the items
-'''
-from abc import abstractmethod,ABC
+from abc import ABC , abstractmethod
 
 
-class ApplicationServices(ABC):     # holds contracts -- what are all things we are going to offer
+class ApplicationServices(ABC) :
+
     @abstractmethod
-    def add_entity(self):
+    def add_entity(self , item) :
         pass
 
     @abstractmethod
-    def remove_entity(self):
+    def remove_entity(self , itemid) :
         pass
 
     @abstractmethod
-    def update_entity(self):
+    def update_entity(self , item , itemid) :
         pass
 
     @abstractmethod
-    def fetch_entity(self):
+    def fetch_entity(self , item) :
         pass
 
     @abstractmethod
-    def fetch_all_entities(self):
+    def fetch_all_entities(self) :
         pass
 
     @abstractmethod
-    def get_entity_as_per_cat(self):
+    def get_entity_as_per_cat(self , cat) :
         pass
